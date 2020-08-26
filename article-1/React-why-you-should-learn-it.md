@@ -1,7 +1,4 @@
 # React, why you should learn it.
-[click on this link](#my-multi-word-header)
-
-### My Multi Word Header
 
 **Table of contents**
 1. [Introduction](#introduction)
