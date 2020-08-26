@@ -20,7 +20,7 @@ In the last six month I have worked at a company that has a big and complex appl
 	
 
 ## Components and Props
-Components let you split the UI into reusable pieces, and think about each piece in isolation. Components are like JavaScript functions. they accept inputs called props. 
+Components let you split the UI into reusable pieces, and think about each piece in isolation. Components are like JavaScript functions. They accept inputs called props. For example, this code renders "Hello, Jim":
 ```js
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -32,6 +32,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+This piece of code is nice when you want to render something on the page dynamically. But it still needs to be manually ‘told’ to change. What if you have, for example, a clock ticking on your website. You would want it to update the DOM automatically. This is where state and lifecycle comes in.
 ## State and Lifecycle
 State is basically the state of the app at that current time and moment. By using states you can for example toggle things in your design or save the input data. In your state you can define infite property's. Whenever one of the property's change in the state, React will re render the components or ui elements that rely on this property.
 ## Redux
