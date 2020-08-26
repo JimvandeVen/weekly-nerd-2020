@@ -85,8 +85,15 @@ This piece of code may seem intimidating at first. Let's dissect it one line at 
 3. When the Clock output is inserted in the DOM, React calls the `componentDidMount()` lifecycle method. There the browser will set a timer to call the `tick()` method every 1000 milliseconds.
 4. Each time the `tick()` method is called the state gets updated by calling `setState()` with an object containing the current time. Because we are using the `setState()` call, React knows the state has changed and calls the `render()` method again. Now `this.state.date` has a different value and React will update the DOM with this value.
 
+I hope you can see why this is really neat. Even for small projects it makes the hassle of keeping the UI up to date with the current state of the application much less cumbersome. This is especially so for big projects, where there are many more components and many more state properties that will change. By using React components you can automate a lot of the UI updates by letting the components be dependent on the state.
+
 ## Summary
+We have taken a quick look at what React components are and what it can do for you. What state and lifecycle mean. How to write proper components that automatically update the DOM when the state changes and how this can help you write concise, reusable and independent pieces of code. 
+And if that is not enough incentive to start learning React, take a look at all the BIG companies that are using the framework: Facebook, AirBnB, Uber, Stackoverflow, BBC, PayPal and many more…
+Think about the job opportunities! 
+
 ## Sources
 - Gimeno, A. (2018, June 21). The deepest reason why modern JavaScript frameworks exist. Medium. https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
 - Wieruch, R. (2019, March 18). React Function Components. RWieruch. https://www.robinwieruch.de/react-function-component/#react-arrow-function-component
+- Incode Group. (2018, May 30). React.js: What’s so good about the front end technology of Facebook? Medium. https://medium.com/@incodegroup/react-js-whats-so-good-about-the-front-end-technology-of-facebook-657f1267af1e#:%7E:text=Thankfully%20Facebook%20released%20React%20as,blended%20in%20the%20application%20code.
 
