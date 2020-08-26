@@ -16,7 +16,7 @@ Frameworks are a much sought after skill as a web developer nowadays. There are 
 ## React
 In the last six month I have worked at a company that has a big and complex application called the [stageplayer](https://stageplayer.nl/nl/). In the stageplayer we used react and redux so that we had reusable pieces of code called components, that had a state 
 
-[img] stageplayer
+![Screenshot of the stageplayer](https://github.com/JimvandeVen/weekly-nerd-2020/blob/master/article-1/chrome_d1aGaSLaEg.png)
 	
 
 ## Components and Props
