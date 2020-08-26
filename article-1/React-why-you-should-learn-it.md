@@ -89,6 +89,7 @@ I hope you can see why this is really neat. Even for small projects it makes the
 
 ## Summary
 We have taken a quick look at what React components are and what it can do for you. What state and lifecycle mean. How to write proper components that automatically update the DOM when the state changes and how this can help you write concise, reusable and independent pieces of code.  
+
 And if that is not enough incentive to start learning React, take a look at all the BIG companies that are using the framework: Facebook, AirBnB, Uber, Stackoverflow, BBC, PayPal and many more…  
 
 Think about the job opportunities! 
