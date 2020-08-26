@@ -21,7 +21,7 @@ In the last six month I have worked at a company that has a big and complex appl
 
 Components and Props
 Components let you split the UI into reusable pieces, and think about each piece in isolation. Components are like JavaScript functions. they accept inputs called props. 
-```js
+```
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
