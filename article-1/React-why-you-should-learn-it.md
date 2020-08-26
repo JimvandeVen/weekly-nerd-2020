@@ -6,8 +6,6 @@
 3. [Components and Props](#components-and-props)
 4. [State and Lifecycle](#state-and-lifecycle)
 5. [Redux](#redux)
-6. [What is Redux](#what-is-redux)
-7. [When to use Redux](#when-to-use-redux)
 8. [Summary](#summary)
 9. [Sources](#sources)
 # React, why you should learn it.
@@ -49,7 +47,7 @@ class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.timerID = setInterval( // iuswahedfiuhsewdf
+    this.timerID = setInterval(
       () => this.tick(),
       1000
     );
@@ -80,14 +78,16 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+This piece of code may seem intimidating at first. Let's dissect it one line at a time.
 
-## Redux
-## What is Redux
-## When to use Redux
+1. When `<Clock />` is passed to `ReactDOM.render()`, React calls the constructor of the Clock component. At first Clock needs to display the current time, so it initializes `this.state` with an object including the current time.
+2. React updates the DOM using the `render()` method, displaying the clock.
+3. When the Clock output is inserted in the DOM, React calls the `componentDidMount()` lifecycle method. There the browser will set a timer to call the `tick()` method every 1000 milliseconds.
+4. Each time the `tick()` method is called the state gets updated by calling `setState()` with an object containing the current time. Because we are using the `setState()` call, React knows the state has changed and calls the `render()` method again. Now `this.state.date` has a different value and React will update the DOM with this value.
+
 ## Summary
 ## Sources
 - https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
 - https://reactjs.org/docs/getting-started.html
-- https://redux.js.org/tutorials/essentials/part-1-overview-concepts
 - https://www.robinwieruch.de/react-function-component#react-arrow-function-component
 
