@@ -87,7 +87,6 @@ This piece of code may seem intimidating at first. Let's dissect it one line at 
 
 ## Summary
 ## Sources
-- https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
-- https://reactjs.org/docs/getting-started.html
-- https://www.robinwieruch.de/react-function-component#react-arrow-function-component
+- Gimeno, A. (2018, June 21). The deepest reason why modern JavaScript frameworks exist. Medium. https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
+- Wieruch, R. (2019, March 18). React Function Components. RWieruch. https://www.robinwieruch.de/react-function-component/#react-arrow-function-component
 
