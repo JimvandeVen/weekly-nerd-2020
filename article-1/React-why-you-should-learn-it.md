@@ -37,23 +37,53 @@ This piece of code is nice when you want to render something on the page dynamic
 **All React components must act like pure functions with respect to their props.** 
 Meaning that React components may never modify its own props. This is where state and lifecycle comes in.
 ## State and Lifecycle
-State is basically the state of the app at that current time and moment. By using states you can for example toggle things in your design or save the input data. In your state you can define infite property's. Whenever one of the property's change in the state, React will re render the components or ui elements that rely on this property.
+State holds the current state of the app. With state you can ‘save’ input data, UI status (hidden, dark mode, etc.) and many more properties. Then whenever one or more properties change in the state, React will re-render **only** the components that rely upon those properties.
+
+Lets look at a ticking clock to make this more clear.
+
+```js
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval( // iuswahedfiuhsewdf
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+```
+
 ## Redux
 ## What is Redux
 ## When to use Redux
-Class based components
-Class based compenents are usually used in React as containers where you hold your smaller components (functinoal components). This Class based component has the ability to hold states. These states can be passed on as props to the child components. Often you also hold your functions in an class based components.
-
-A Class based component is also the only component which can use lifecycle hooks.
-
-You can make lots of Class based components, but when you have a big applications it becomes unclear real fast where you hold certain states. So it is smart to make Class components sparingly and wisely.
-
-Functional Components
-Most of your app consists of Functional components. These components are often used to for displaying purposes. Functional components often have props that were passed on from a Class based component and based on these props certain ui elements will show or even the whole component.
-
-NOTE: because of React hooks you can even hold states in your functional components!!! So you can build an entire app from only functional components
-
-
 ## Summary
 ## Sources
 - https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
