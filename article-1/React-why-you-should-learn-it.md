@@ -12,7 +12,7 @@
 ## Introduction
 Frameworks are a much sought after skill as a web developer nowadays. There are many reasons why. The fact that they are based on components, have a strong community and have many third party libraries are some of those reasons. But the biggest reason is that keeping the UI in sync with the state is hard. In this article I want to show you how react makes this easier for you and why this should matter to you.
 ## React
-In the last six month I have worked at a company that has a big and complex application called the [stageplayer](https://stageplayer.nl/nl/). In the stageplayer we used react and redux so that we had reusable pieces of code called components, that had a state 
+In the last six month I have worked at a company that has a big and complex application called the [stageplayer](https://stageplayer.nl/nl/). In the stageplayer we used react and redux so that we had reusable pieces of code called components, that had a state which we could easily update.
 
 ![Screenshot of the stageplayer](https://github.com/JimvandeVen/weekly-nerd-2020/blob/master/article-1/chrome_d1aGaSLaEg.png)
 	
