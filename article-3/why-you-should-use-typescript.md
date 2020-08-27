@@ -1,102 +1,157 @@
-# React, why you should learn it.
+# Why you should use TypeScript
 
 **Table of contents**
 1. [Introduction](#introduction)
-2. [React](#react)
-3. [Components and Props](#components-and-props)
-4. [State and Lifecycle](#state-and-lifecycle)
-5. [Redux](#redux)
-8. [Summary](#summary)
-9. [Sources](#sources)
-# React, why you should learn it.
+2. [What is TypeScript](#what-is-typescript)
+3. [Types and Interfaces](#types-and-interfaces)
+4. [Functions](#functions)
+5. [Conclusion](#conclusion)
+6. [Sources](#sources)
+# Why you should use TypeScript
 ## Introduction
-Frameworks are a much sought after skill as a web developer nowadays. There are many reasons why. The fact that they are based on components, have a strong community and have many third party libraries are some of those reasons. But the biggest reason is that keeping the UI in sync with the state is hard. In this article I want to show you how react makes this easier for you and why this should matter to you.
-## React
-In the last six month I have worked at a company that has a big and complex application called the [stageplayer](https://stageplayer.nl/nl/). In the stageplayer we used react and redux so that we had reusable pieces of code called components, that had a state which we could easily update.
+Since I started developing in JavaScript 5 years ago I haven't had such a big epiphany as I had when I began using TypeScript. When I first saw what the code looked like, TypeScript seemed like it was overdoing it and would mean more typing for the developer. I couldn’t have been more wrong. Typescript makes your code more readable, more concise and less prone to errors. In this article I hope to show you those characteristics as well as the basics of writing TypeScript.
 
-![Screenshot of the stageplayer](https://github.com/JimvandeVen/weekly-nerd-2020/blob/master/article-1/chrome_d1aGaSLaEg.png)
-	
+## What is TypeScript
 
-## Components and Props
-Components let you split the UI into reusable pieces, and think about each piece in isolation. Components are like JavaScript functions. They accept inputs called props. For example, this code renders "Hello, Jim":
-```js
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
+TypeScript is an object-oriented programming language and extends JavaScript by adding types. All valid JavaScript code is also TypeScript code. It is a superset of JavaScript and contains all of its elements. 
 
-const element = <Welcome name="Jim" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+When coding in TypeScript you use a .ts file that is converted into a .js file using the Typescript Compiler. This is done in the build phase of a project. So the code that goes live is plain JavaScript. What this means is that TypeScript works much like a developer tool, making your life easier and finding inconsistencies or bugs before you run your code.
+
+But how does TypeScript do that?
+
+## Types and Interfaces
+The way Typescript makes your code more readable and less prone to errors is by using types and interfaces. Let’s look at some examples.
+
+###Types
+There are types for each of the different kinds of data: booleans, numbers, strings and arrays. By adding `:boolean` (or any other type) behind the declaration you tell typescript what type to expect.
+
+**Boolean**
+``` ts
+let isDone: boolean = false; //no error
+let isDone: boolean = “false”; // error
+```
+**Number**
+``` ts
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+let big: bigint = 100n;
+```
+**String**
+``` ts
+let color: string = "blue";
+color = "red";
+```
+**Array**
+With arrays you define what type of array to expect, like an array of numbers or strings
+``` ts
+let list: number[] = [1, 2, 3];
 ```
 
-This piece of code is nice when you want to render something on the page dynamically. But it still needs to be manually ‘told’ to change. What if you have, for example, a clock ticking on your website. You would want it to update the DOM automatically. But with React components there is one golden rule: 
-**All React components must act like pure functions with respect to their props.** 
-Meaning that React components may never modify its own props. This is where state and lifecycle comes in.
-## State and Lifecycle
-State holds the current state of the app. With state you can ‘save’ input data, UI status (hidden, dark mode, etc.) and many more properties. Then whenever one or more properties change in the state, React will re-render **only** the components that rely upon those properties.
+###Interfaces
+Interfaces are used when defining objects. Objects usually consist of different keys that can have different types. So when handling big Objects with multiple types of data you really want to define them in order to have more control and better error checking during coding.
 
-Lets look at a ticking clock to make this more clear.
+**Object**
+``` ts
+interface Person { // This is the interface 
+   firstName:string; 
+   lastName:string; 
+   sayHi: ()=>string; 
+} 
 
-```js
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
+let customer: Person = { // Here you assign the interface to the Object Person 
+   firstName: "Tom",
+   lastName: "Hanks", 
+   sayHi: ():string =>{return "Hi there"} 
+} 
+```
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
+What these types and interfaces do is that you can, just by reading the code, see what the relationships between pieces of code are. This means that your code can be much easier understood by someone who hasn’t worked on it. And also makes it much more obvious, in the form of typescript errors, when you do something that you are not supposed to do like adding up strings instead of numbers.
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
 
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
+## Functions
+Functions are the bread and butter of JavaScript. So naturally TypeScript has found a way to make these better to understand and less error prone. Let's dive into some code!
 
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
+Here we have two simple functions, one named and one anonymous.
+
+``` ts
+// Named function
+function add(x, y) {
+  return x + y;
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+// Anonymous function
+let myAdd = function (x, y) {
+  return x + y;
+};
 ```
-This piece of code may seem intimidating at first. Let's dissect it one line at a time.
 
-1. When `<Clock />` is passed to `ReactDOM.render()`, React calls the constructor of the Clock component. At first Clock needs to display the current time, so it initializes `this.state` with an object including the current time.
-2. React updates the DOM using the `render()` method, displaying the clock.
-3. When the Clock output is inserted in the DOM, React calls the `componentDidMount()` lifecycle method. There the browser will set a timer to call the `tick()` method every 1000 milliseconds.
-4. Each time the `tick()` method is called the state gets updated by calling `setState()` with an object containing the current time. Because we are using the `setState()` call, React knows the state has changed and calls the `render()` method again. Now `this.state.date` has a different value and React will update the DOM with this value.
+Let’s add types.
+``` ts
+function add(x: number, y: number): number {
+  return x + y;
+}
 
-I hope you can see why this is really neat. Even for small projects it makes the hassle of keeping the UI up to date with the current state of the application much less cumbersome. This is especially so for big projects, where there are many more components and many more state properties that will change. By using React components you can automate a lot of the UI updates by letting the components be dependent on the state.
+let myAdd = function (x: number, y: number): number {
+  return x + y;
+};
+```
+What you see here is that the parameters are given a type `add(x: number, y: number)`. But also the return type `: number`. Now these are really simple functions. Let's see what you can do with more complicated functions .
 
-## Summary
-We have taken a quick look at what React components are and what it can do for you. What state and lifecycle mean. How to write proper components that automatically update the DOM when the state changes and how this can help you write concise, reusable and independent pieces of code.  
+``` ts
+interface Card { // The Card interface
+  suit: string;
+  card: number;
+}
 
-And if that is not enough incentive to start learning React, take a look at all the BIG companies that are using the framework: Facebook, AirBnB, Uber, Stackoverflow, BBC, PayPal and many more…  
+interface Deck { // The Deck interface
+  suits: string[];
+  cards: number[];
+  createCardPicker(this: Deck): () => Card;
+}
 
-Think about the job opportunities! 
+let deck: Deck = { // Deck interface assigned to deck
+  suits: ["hearts", "spades", "clubs", "diamonds"],
+  cards: Array(52),
+  // NOTE: The function now explicitly specifies that its callee must be of type Deck
+  createCardPicker: function (this: Deck) {
+    return () => {
+      let pickedCard = Math.floor(Math.random() * 52);
+      let pickedSuit = Math.floor(pickedCard / 13);
+
+      return { suit: this.suits[pickedSuit], card: pickedCard % 13 };
+    };
+  },
+};
+
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
+
+alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+```
+
+In the above function there is little room for error because everything is specified by types and interfaces. So when you do pass the wrong parameter to the function you get a neat error message in your editor that says where it went wrong, what went wrong and what was expected.
+
+
+## Conclusion
+I hope you can see that by using Typescript you can make your code better in an earlier stage of development. There is a bit of a learning curve as is the case with almost all of the many tools, frameworks and features of JavaScript. But once you get used to the way TypeScript is written I think it really pays dividends. Also the use of TypeScript is not boolean. You can use certain aspects of it, compile your code and it will work like any JavaScript project. This helps developers who are new to TypeScript gradually improve their skill in it.
+
+Here are some of the things to keep in mind when deciding whether or not to start using TypeScript:
+
+TypeScript simplifies JavaScript code, making it easier to read and debug.
+TypeScript is open source.
+TypeScript provides highly productive development tools for JavaScript 
+TypeScript gives you all the benefits of ES6, plus more productivity.
+TypeScript can help you to avoid bugs that you commonly run into when writing JavaScript by type checking the code.
+Powerful type system
+TypeScript is nothing but JavaScript with some additional features.
+TypeScript code can be compiled as per ES5 and ES6 standards to support the latest browser.
+TypeScript will save you time (after you have gotten used to it).
+
 
 ## Sources
-- Gimeno, A. (2018, June 21). The deepest reason why modern JavaScript frameworks exist. Medium. https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445
-- Wieruch, R. (2019, March 18). React Function Components. RWieruch. https://www.robinwieruch.de/react-function-component/#react-arrow-function-component
-- Incode Group. (2018, May 30). React.js: What’s so good about the front end technology of Facebook? Medium. https://medium.com/@incodegroup/react-js-whats-so-good-about-the-front-end-technology-of-facebook-657f1267af1e#:%7E:text=Thankfully%20Facebook%20released%20React%20as,blended%20in%20the%20application%20code.
+Sharma, A. (2019, October 1). Why You Should Use TypeScript for Developing Web Applications - DZone Web Dev. Dzone.Com. https://dzone.com/articles/what-is-typescript-and-why-use-it
+https://www.typescriptlang.org/
 
 
